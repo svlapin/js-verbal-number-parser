@@ -4,12 +4,24 @@ module.exports = {
   tokenize: tokenize
 };
 
-var classifiers = {
-  hundreds: ['hundreds', 'hundred'],
-  thousands: ['thousands', 'thousand'],
-  millions: ['millions', 'million'],
-  billions: ['billions', 'billion']
-};
+var classifiers = [
+  {
+    id: 'hundreds',
+    forms: ['hundreds', 'hundred']
+  },
+  {
+    id: 'thousands',
+    forms: ['thousands', 'thousand']
+  },
+  {
+    id: 'millions',
+    forms: ['millions', 'million']
+  },
+  {
+    id: 'billions',
+    forms: ['billions', 'billion']
+  }
+];
 
 /**
  * Spltits the string by classifiers
@@ -21,16 +33,16 @@ function tokenize(str) {
   var result = {};
   var rem = str;
 
-  for (var cls in classifiers) {
-    var forms = classifiers[cls];
+  for (var k = classifiers.length - 1; k >= 0; k--) {
+    var cls = classifiers[k];
 
-    for (var i = 0, l = forms.length; i < l; i++) {
-      var split = rem.split(forms[i]);
+    for (var i = 0, l = cls.forms.length; i < l; i++) {
+      var split = rem.split(cls.forms[i]);
 
       if (split.length > 1) {
         // classifier's form presents in the remainder string
         rem = split[1];
-        result[cls] = split[0].trim();
+        result[cls.id] = split[0].trim();
 
         // don't try other forms
         break;

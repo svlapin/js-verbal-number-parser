@@ -55,4 +55,33 @@ describe('tokenization', function() {
       assert.equal(tokens.units, 'sixty seven');
     });
   });
+
+  describe('full string', function() {
+    var tokens;
+
+    before(function() {
+      tokens = tokenize('thirty five billions six millions' +
+        ' one thousand eight hundreds and sixty seven');
+    });
+
+    it('sholde be "thirty five" for billions', function() {
+      assert.equal(tokens.billions, 'thirty five');
+    });
+
+    it('sholde be "six" for millions', function() {
+      assert.equal(tokens.millions, 'six');
+    });
+
+    it('sholde be "one" for thousands', function() {
+      assert.equal(tokens.thousands, 'one');
+    });
+
+    it('sholde be "eight" for hundreds', function() {
+      assert.equal(tokens.hundreds, 'eight');
+    });
+
+    it('sholde be "sixty seven" for units', function() {
+      assert.equal(tokens.units, 'sixty seven');
+    });
+  });
 });
