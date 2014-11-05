@@ -12,6 +12,7 @@
   "author": "Sergey Lapin",
   "license": "MIT",
   "devDependencies": {
+    "istanbul": "^0.3.2",
     "mocha": "^2.0.1"
   },
   "repository": {
