@@ -33,7 +33,7 @@ function tokenize(str) {
       var split = rem.split(forms[i]);
 
       if (split.length > 1) {
-        // classifiers presents in the remainder string
+        // classifier's form presents in the remainder string
         rem = split[1];
         result[cls] = split[0].trim();
 
