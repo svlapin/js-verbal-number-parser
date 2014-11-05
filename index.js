@@ -104,7 +104,7 @@ var tens = {
 /**
  * Convert verbal numeric statement to a number
  * @param  {Object} obj object returned by 'tokenize'
- * @return {String} Number
+ * @return {Number} Number
  */
 function convert(obj) {
   var partial = {};
