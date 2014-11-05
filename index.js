@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = {
-  convert: convert,
   tokenize: tokenize
 };
 
@@ -11,10 +10,6 @@ var classifiers = {
   millions: ['millions', 'million'],
   billions: ['billions', 'billion']
 };
-
-function convert() {
-  // TODO
-}
 
 /**
  * Spltits the string by classifiers
