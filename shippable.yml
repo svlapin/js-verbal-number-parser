@@ -4,7 +4,7 @@ rvm:
   - '0.10.33'
 
 before_script:
-  - mkdir -p codecoverage
+  - mkdir -p shippable/codecoverage/
 
 install:
   - "npm install"
@@ -13,4 +13,4 @@ script:
   - "npm test"
 
 after_script:
-  - ./node_modules/.bin/istanbul report cobertura --dir  codecoverage
+  - ./node_modules/.bin/istanbul report cobertura --dir shippable/codecoverage/
