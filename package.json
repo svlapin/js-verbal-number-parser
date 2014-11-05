@@ -1,7 +1,7 @@
 {
   "name": "string_parser",
   "version": "0.0.1",
-  "description": "js-verbal-number-parser =======================",
+  "description": "JS verbal numbers parser",
   "main": "index.js",
   "directories": {
     "test": "test"
