@@ -1,10 +1,7 @@
 'use strict';
 var assert = require('assert');
 
-var module = require('../')
-
-var convert = module.convert;
-var tokenize = module.tokenize;
+var tokenize = require('../').tokenize;
 
 describe('tokenization', function() {
   describe('three hundreds thirty five', function() {
