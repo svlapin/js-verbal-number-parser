@@ -5,12 +5,12 @@ module.exports = {
   tokenize: tokenize
 };
 
-var classifiers = [
-  'hundreds',
-  'thousands',
-  'millions',
-  'billions'
-];
+var classifiers = {
+  hundreds: ['hundreds', 'hundred'],
+  thousands: ['thousands', 'thousand'],
+  millions: ['millions', 'million'],
+  billions: ['billions', 'billion']
+};
 
 function convert() {
   // TODO
@@ -25,14 +25,21 @@ function convert() {
 function tokenize(str) {
   var result = {};
   var rem = str;
-  for (var i = classifiers.length - 1; i >= 0; i--) {
-    var cls = classifiers[i];
-    var split = rem.split(cls);
 
-    if (split.length > 1) {
-      // classifiers presents in the remainder string
-      rem = split[1];
-      result[cls] = split[0].trim();
+  for (var cls in classifiers) {
+    var forms = classifiers[cls];
+
+    for (var i = 0, l = forms.length; i < l; i++) {
+      var split = rem.split(forms[i]);
+
+      if (split.length > 1) {
+        // classifiers presents in the remainder string
+        rem = split[1];
+        result[cls] = split[0].trim();
+
+        // don't try other forms
+        break;
+      }
     }
   }
 
