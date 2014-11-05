@@ -1,0 +1,17 @@
+{
+  "name": "string_parser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha"
+  },
+  "author": "Sergey Lapin",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^2.0.1"
+  }
+}
