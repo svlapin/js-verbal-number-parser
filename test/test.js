@@ -39,4 +39,20 @@ describe('tokenization', function() {
       assert.equal(tokens.units, 'sixty five');
     });
   });
+
+  describe('one hundred and sixty seven', function() {
+    var tokens;
+
+    before(function() {
+      tokens = tokenize('one hundred and sixty seven');
+    });
+
+    it('sholde be "one" for hundreds', function() {
+      assert.equal(tokens.hundreds, 'one');
+    });
+
+    it('sholde be "sixty seven" for units', function() {
+      assert.equal(tokens.units, 'sixty seven');
+    });
+  });
 });

@@ -43,6 +43,15 @@ function tokenize(str) {
     }
   }
 
-  result.units = rem.trim();
+  result.units = _processUnits(rem);
   return result;
+}
+
+/**
+ * Units anjusments
+ * @param  {Str} str Input string
+ * @return {Str} Formatted units
+ */
+function _processUnits(str) {
+  return str.replace('and', '').trim();
 }
