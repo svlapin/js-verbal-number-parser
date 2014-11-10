@@ -40,23 +40,37 @@ function tokenize(str) {
 
   for (var k = classifiers.length - 1; k >= 0; k--) {
     var cls = classifiers[k];
-
-    for (var i = 0, l = cls.forms.length; i < l; i++) {
-      var split = rem.split(cls.forms[i]);
-
-      if (split.length > 1) {
-        // classifier's form presents in the remainder string
-        rem = split[1];
-        result[cls.id] = split[0].trim();
-
-        // don't try other forms
-        break;
-      }
+    var split = _processClassifier(rem, cls);
+    if (split) {
+      rem = split[1];
+      result[cls.id] = split[0];
     }
   }
 
-  result.units = _processUnits(rem);
+  if (rem) {
+    result.units = rem;
+  }
+
   return result;
+}
+
+/**
+ * Processed the string using one of the classifiers
+ * @param  {String} str Input string
+ * @param  {Object} cls One of classifiers
+ * @return {Array | Null} Null or split array
+ */
+function _processClassifier(str, cls) {
+  for (var i = 0, l = cls.forms.length; i < l; i++) {
+    var split = str.split(cls.forms[i]);
+
+    if (split.length > 1) {
+      return split.map(function(el) {
+        return _normalize(el);
+      });
+    }
+  }
+  return null;
 }
 
 /**
@@ -64,8 +78,8 @@ function tokenize(str) {
  * @param  {Str} str Input string
  * @return {Str} Formatted units
  */
-function _processUnits(str) {
-  return str.replace('and', '').trim();
+function _normalize(str) {
+  return str.replace(/\sand\s/, ' ').trim();
 }
 
 var units = {
@@ -114,6 +128,14 @@ function convert(obj) {
 
     partial[cls] = 0;
 
+    // handle hundrers in MSBs
+    var split = _processClassifier(vAmount, classifiers[0]);
+    if (split) {
+      console.log(split)
+      partial[cls] += units[split[0]] * classifiers[0].multiplier;
+      vAmount = split[1];
+    }
+
     for (var t in tens) {
       if (vAmount.indexOf(t) !== -1) {
         partial[cls] += tens[t];
@@ -141,6 +163,5 @@ function convert(obj) {
       }
     }
   }
-
-  return res + partial.units;
+  return res + (partial.units || 0);
 }

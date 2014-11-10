@@ -90,7 +90,7 @@ describe('tokenization', function() {
     });
 
     it('sholde be "one hundred and thirty five" for billions', function() {
-      assert.equal(tokens.billions, 'one hundred and thirty five');
+      assert.equal(tokens.billions, 'one hundred thirty five');
     });
   });
 });
