@@ -81,4 +81,16 @@ describe('tokenization', function() {
       assert.equal(tokens.units, 'sixty seven');
     });
   });
+
+  describe('hundreds in millions', function() {
+    var tokens;
+
+    before(function() {
+      tokens = tokenize('one hundred and thirty five billions');
+    });
+
+    it('sholde be "one hundred and thirty five" for billions', function() {
+      assert.equal(tokens.billions, 'one hundred and thirty five');
+    });
+  });
 });
