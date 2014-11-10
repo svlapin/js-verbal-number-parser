@@ -2,7 +2,8 @@
 
 module.exports = {
   tokenize: tokenize,
-  convert: convert
+  convert: convert,
+  translate: translate
 };
 
 var classifiers = [
@@ -131,7 +132,6 @@ function convert(obj) {
     // handle hundrers in MSBs
     var split = _processClassifier(vAmount, classifiers[0]);
     if (split) {
-      console.log(split)
       partial[cls] += units[split[0]] * classifiers[0].multiplier;
       vAmount = split[1];
     }
@@ -164,4 +164,12 @@ function convert(obj) {
     }
   }
   return res + (partial.units || 0);
+}
+
+/**
+ * Two steps wrapper - tokenize + convert
+ * @return {String} Converted string
+ */
+function translate(str) {
+  return convert(tokenize(str));
 }
