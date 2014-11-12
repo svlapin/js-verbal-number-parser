@@ -4,3 +4,12 @@ js-verbal-number-parser
 =======================
 
 Simple JS utility for parsing numbers written in words to real numbers
+
+### Usage
+```js
+var conv = require('./index');
+
+var str = 'two millions sixty five thousands three hundreds and ten';
+
+console.log(conv.translate(str)); // 2065310
+```
