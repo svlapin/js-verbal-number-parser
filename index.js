@@ -199,7 +199,15 @@ function translate(str) {
  * @return {String}     Output string
  */
 function stringifyNumber(num) {
+  var str = [];
+  var rem = num;
   for (var i = classifiers.length - 1; i >= 0; i--) {
+    var cls = classifiers[i];
+
+    if (cls.multiplier > rem) continue;
+
+    var quotient = Math.floor(rem / cls.multiplier);
+
     
   }
 }
