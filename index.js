@@ -83,7 +83,7 @@ function _normalize(str) {
   return str.replace(/\sand\s/, ' ').trim();
 }
 
-var units = {
+var unitsToNum = {
   'one': 1,
   'two': 2,
   'three': 3,
@@ -95,7 +95,24 @@ var units = {
   'nine': 9
 };
 
-var tens = {
+/**
+ * Transpose an object, making its values a keys and vice versa
+ * @param  {Object} obj Input hash
+ * @return {Object}     Transposed object
+ */
+function invertHash(obj) {
+  var res = {};
+
+  for (var key in obj) {
+    res[obj[key]] = key;
+  }
+
+  return res;
+}
+
+var unitsToString = invertHash(unitsToNum);
+
+var tensToNum = {
   'ten': 10,
   'eleven': 11,
   'twelve': 12,
@@ -116,6 +133,8 @@ var tens = {
   'ninety': 90
 };
 
+var tensToString = invertHash(tensToNum);
+
 /**
  * Convert verbal numeric statement to a number
  * @param  {Object} obj object returned by 'tokenize'
@@ -132,13 +151,13 @@ function convert(obj) {
     // handle hundrers in MSBs
     var split = _processClassifier(vAmount, classifiers[0]);
     if (split) {
-      partial[cls] += units[split[0]] * classifiers[0].multiplier;
+      partial[cls] += unitsToNum[split[0]] * classifiers[0].multiplier;
       vAmount = split[1];
     }
 
-    for (var t in tens) {
+    for (var t in tensToNum) {
       if (vAmount.indexOf(t) !== -1) {
-        partial[cls] += tens[t];
+        partial[cls] += tensToNum[t];
         vAmount = vAmount.split(t)[1].trim();
         break;
       }
@@ -146,9 +165,9 @@ function convert(obj) {
 
     if (!vAmount) continue;
 
-    for (var u in units) {
+    for (var u in unitsToNum) {
       if (vAmount.indexOf(u) !== -1) {
-        partial[cls] += units[u];
+        partial[cls] += unitsToNum[u];
         break;
       }
     }
@@ -172,4 +191,15 @@ function convert(obj) {
  */
 function translate(str) {
   return convert(tokenize(str));
+}
+
+/**
+ * Converts number to a string
+ * @param  {Number} num Input number
+ * @return {String}     Output string
+ */
+function stringifyNumber(num) {
+  for (var i = classifiers.length - 1; i >= 0; i--) {
+    
+  }
 }
