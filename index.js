@@ -198,8 +198,10 @@ function translate(str) {
  * @param  {Number} num Input number
  * @return {String}     Output string
  */
-function stringifyNumber(num) {
-  var str = [];
+
+function stringify(num) {
+  console.log('stringifying %d', num)
+  var str = '';
   var rem = num;
   for (var i = classifiers.length - 1; i >= 0; i--) {
     var cls = classifiers[i];
@@ -207,7 +209,12 @@ function stringifyNumber(num) {
     if (cls.multiplier > rem) continue;
 
     var quotient = Math.floor(rem / cls.multiplier);
-
-    
+    rem = rem % cls.multiplier;
+    str += [stringify(quotient), cls.id].join(' ');
   }
+
+  str = [str, rem.toString()].join(' ');
+  console.log('Result: %s', str || num.toString())
+
+  return str || num.toString();
 }
