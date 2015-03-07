@@ -41,6 +41,15 @@ var data = [
       billions: 'one hundred and thirty five'
     },
     expect: 135000000000
+  },
+
+  {
+    input: {
+        billions: '17',
+        hundreds: '12',
+        units: '7'
+    },
+    expect: 17000001207
   }
 ];
 

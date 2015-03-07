@@ -27,6 +27,11 @@ var data = [
   {
     input: 'nine millions three hundreds sixty five thousands three hundreds eleven',
     expect: 9365311
+  },
+
+  {
+    input: '17.46 million',
+    expect: 17460000
   }
 ];
 
