@@ -14,17 +14,17 @@ var classifiers = [
   },
   {
     id: 'thousands',
-    forms: ['thousands', 'thousand'],
+    forms: ['thousands', 'thousand', 'k', 'K'],
     multiplier: 1e3
   },
   {
     id: 'millions',
-    forms: ['millions', 'million'],
+    forms: ['millions', 'million', 'M', 'mln'],
     multiplier: 1e6
   },
   {
     id: 'billions',
-    forms: ['billions', 'billion'],
+    forms: ['billions', 'billion', 'G', 'B', 'bln'],
     multiplier: 1e9
   }
 ];
