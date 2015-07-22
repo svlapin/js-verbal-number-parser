@@ -45,9 +45,9 @@ var data = [
 
   {
     input: {
-        billions: '17',
-        hundreds: '12',
-        units: '7'
+      billions: '17',
+      hundreds: '12',
+      units: '7'
     },
     expect: 17000001207
   }

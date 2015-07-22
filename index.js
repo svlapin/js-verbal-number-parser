@@ -149,10 +149,9 @@ function convert(obj) {
     partial[cls] = 0;
 
     // handle numeric values
-    if(vAmount.match(/^[0-9.]+$/))
-    {
-        partial[cls] += parseFloat(vAmount);
-        continue;
+    if(vAmount.match(/^[0-9.]+$/)) {
+      partial[cls] += parseFloat(vAmount);
+      continue;
     }
 
     // handle hundrers in MSBs
