@@ -149,7 +149,7 @@ function convert(obj) {
     partial[cls] = 0;
 
     // handle numeric values
-    if(vAmount.match(/^[0-9.]+$/)) {
+    if (vAmount.match(/^[0-9.]+$/)) {
       partial[cls] += parseFloat(vAmount);
       continue;
     }
