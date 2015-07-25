@@ -27,7 +27,29 @@ var data = [
   {
     input: 'nine millions three hundreds sixty five thousands three hundreds eleven',
     expect: 9365311
+  },
+
+  {
+    input: '17.46 million',
+    expect: 17460000
+  },
+
+  {
+    input: '.43B',
+    expect: 430000000
+  },
+
+  {
+    input: '12.5k',
+    expect: 12500
+  },
+
+  {
+    input: '13 bln',
+    expect: 13000000000
   }
+
+
 ];
 
 describe('translate string', function() {

@@ -14,17 +14,17 @@ var classifiers = [
   },
   {
     id: 'thousands',
-    forms: ['thousands', 'thousand'],
+    forms: ['thousands', 'thousand', 'k', 'K'],
     multiplier: 1e3
   },
   {
     id: 'millions',
-    forms: ['millions', 'million'],
+    forms: ['millions', 'million', 'M', 'mln'],
     multiplier: 1e6
   },
   {
     id: 'billions',
-    forms: ['billions', 'billion'],
+    forms: ['billions', 'billion', 'G', 'B', 'bln'],
     multiplier: 1e9
   }
 ];
@@ -147,6 +147,12 @@ function convert(obj) {
     var vAmount = obj[cls];
 
     partial[cls] = 0;
+
+    // handle numeric values
+    if (vAmount.match(/^[0-9.]+$/)) {
+      partial[cls] += parseFloat(vAmount);
+      continue;
+    }
 
     // handle hundrers in MSBs
     var split = _processClassifier(vAmount, classifiers[0]);
